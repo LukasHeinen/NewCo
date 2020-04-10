@@ -1,4 +1,4 @@
-import { Component, Inject } from "@angular/core";
+import { Component, Inject, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
 @Component({
@@ -6,19 +6,26 @@ import { HttpClient } from "@angular/common/http";
   templateUrl: "tab3.page.html",
   styleUrls: ["tab3.page.scss"],
 })
-export class Tab3Page {
+export class Tab3Page implements OnInit {
   public forecasts: WeatherForecast[];
+  private baseUrl: string;
+  private httpClient: HttpClient;
 
   constructor(http: HttpClient, @Inject("BASE_URL") baseUrl: string) {
-    http.get<WeatherForecast[]>(baseUrl + "weatherforecast").subscribe(
-      (result) => {
-        this.forecasts = result;
-      },
-      (error) => console.error(error)
-    );
+    this.httpClient = http;
+    this.baseUrl = baseUrl;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.httpClient
+      .get<WeatherForecast[]>(this.baseUrl + "weatherforecast")
+      .subscribe(
+        (result) => {
+          this.forecasts = result;
+        },
+        (error) => console.error(error)
+      );
+  }
 }
 
 interface WeatherForecast {
