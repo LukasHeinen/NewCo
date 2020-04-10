@@ -1,12 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
-  selector: 'app-tab3',
-  templateUrl: 'tab3.page.html',
-  styleUrls: ['tab3.page.scss']
+  selector: "app-tab3",
+  templateUrl: "tab3.page.html",
+  styleUrls: ["tab3.page.scss"],
 })
 export class Tab3Page {
+  public forecasts: WeatherForecast[];
 
-  constructor() {}
+  constructor(http: HttpClient, @Inject("BASE_URL") baseUrl: string) {
+    http.get<WeatherForecast[]>(baseUrl + "weatherforecast").subscribe(
+      (result) => {
+        this.forecasts = result;
+      },
+      (error) => console.error(error)
+    );
+  }
 
+  ngOnInit() {}
+}
+
+interface WeatherForecast {
+  date: string;
+  temperatureC: number;
+  temperatureF: number;
+  summary: string;
 }
