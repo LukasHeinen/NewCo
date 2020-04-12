@@ -20,6 +20,13 @@ namespace clicky_clicky.Controllers
             _userManager = userManager;
         }
         
+        [HttpGet("Login")]
+        public IActionResult Login() 
+        {
+            var authenticationProperties = _signInManager.ConfigureExternalAuthenticationProperties("Google", Url.Action(nameof(HandleExternalLogin)));
+            return Challenge(authenticationProperties, "Google");
+        }
+
         [HttpGet("SignInWithGoogle")]
         public IActionResult SignInWithGoogle()
         {
