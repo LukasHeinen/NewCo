@@ -1,6 +1,16 @@
-<div id="container">
-  <strong>{{ name }}</strong>
-  <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  <img src="../assets/images/FB_20160109_12_32_08_Saved_Picture.jpg">
+<ion-card *ngFor="let clicky of clickys">
+  <ion-card-header>
+    <ion-card-title
+      ><ion-item>
+        <ion-avatar slot="start">
+          <img [src]="clicky.user.avatar" />
+        </ion-avatar>
+        {{ clicky.headline }}
+      </ion-item></ion-card-title
+    >
+  </ion-card-header>
 
-</div>
+  <ion-card-content>
+    <ion-img [src]="clicky.image"></ion-img>
+  </ion-card-content>
+</ion-card>

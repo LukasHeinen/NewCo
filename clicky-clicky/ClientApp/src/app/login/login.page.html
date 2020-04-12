@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="ion-padding">
+  <ion-text color="dark" style="text-align: center;">
+    <h1 *ngIf="isUserAuthenticated">Hello {{userName}}</h1>
+    <h1 *ngIf="!isUserAuthenticated">
+      Please Select a Login Option
+    </h1>
+  </ion-text>
+  <ion-button expand="block" (click)="logout()" *ngIf="isUserAuthenticated">
+    Logout
+  </ion-button>
+
+  <ion-button
+    expand="block"
+    routerLink="/test/tabs/tab1"
+    *ngIf="!isUserAuthenticated"
+  >
+    <ion-icon name="rocket-sharp"></ion-icon>
+    Continue without Login
+  </ion-button>
+
+  <ion-button expand="block" (click)="login()" *ngIf="!isUserAuthenticated">
+    <ion-icon slot="start" name="logo-google"></ion-icon>
+
+    Login with Google
+  </ion-button>
+
+  <ion-button expand="block" color="warning" (click)="simulateFailedCall()">
+    Get a 401
+  </ion-button>
+</ion-content>
