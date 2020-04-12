@@ -6,7 +6,7 @@
   - Windows (non powershell): `SET ASPNETCORE_Environment=Development`
   - Mac & Linux: `export ASPNETCORE_Environment=Development`
   
-- Copy `appsettings.json` to `appsettings.Develeopment.json`and replace missing keys.
+- Copy `appsettings.json` to `appsettings.Development.json` and replace missing keys.
 
 ## Run Application
 
