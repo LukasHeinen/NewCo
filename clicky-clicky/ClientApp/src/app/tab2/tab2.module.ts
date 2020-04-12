@@ -1,10 +1,10 @@
-import { IonicModule } from "@ionic/angular";
-import { RouterModule } from "@angular/router";
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { FormsModule } from "@angular/forms";
-import { Tab2Page } from "./tab2.page";
-import { ExploreContainerComponentModule } from "../explore-container/explore-container.module";
+import { IonicModule } from '@ionic/angular';
+import { RouterModule } from '@angular/router';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { Tab2Page } from './tab2.page';
+import { ExploreContainerComponentModule } from '../explore-container/explore-container.module';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -13,7 +13,7 @@ import { ExploreContainerComponentModule } from "../explore-container/explore-co
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    RouterModule.forChild([{ path: "", component: Tab2Page }]),
+    RouterModule.forChild([{ path: '', component: Tab2Page }]),
   ],
   declarations: [Tab2Page],
 })
