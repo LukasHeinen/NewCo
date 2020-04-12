@@ -2,7 +2,6 @@ import { Component, OnInit, Inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { AccountService } from "../services/account.service";
 import { Subscription } from "rxjs";
-import { environment } from "src/environments/environment";
 
 @Component({
   selector: "app-login",
@@ -13,14 +12,14 @@ export class LoginPage implements OnInit {
   isUserAuthenticated = false;
   subscription: Subscription;
   userName: string;
-  private userNameUrl: string;
+  private baseUrl: string;
 
   constructor(
     @Inject("BASE_URL") baseUrl: string,
     private httpClient: HttpClient,
     private accountService: AccountService
   ) {
-    this.userNameUrl = baseUrl + "home/name";
+    this.baseUrl = baseUrl + "home/";
   }
 
   ngOnInit() {
@@ -29,7 +28,7 @@ export class LoginPage implements OnInit {
         this.isUserAuthenticated = isAuthenticated;
         if (this.isUserAuthenticated) {
           this.httpClient
-            .get(this.userNameUrl, {
+            .get(this.baseUrl + "name", {
               responseType: "text",
               withCredentials: true,
             })
@@ -50,7 +49,7 @@ export class LoginPage implements OnInit {
   }
 
   simulateFailedCall() {
-    this.httpClient.get(`${environment.apiUrl}/home/fail`).subscribe();
+    this.httpClient.get(this.baseUrl + "fail").subscribe();
   }
 
   login() {
