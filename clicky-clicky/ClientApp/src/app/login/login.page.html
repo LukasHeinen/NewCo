@@ -15,6 +15,15 @@
     Logout
   </ion-button>
 
+  <ion-button
+    expand="block"
+    routerLink="/test/tabs/tab1"
+    *ngIf="!isUserAuthenticated"
+  >
+    <ion-icon name="rocket-sharp"></ion-icon>
+    Continue without Login
+  </ion-button>
+
   <ion-button expand="block" (click)="login()" *ngIf="!isUserAuthenticated">
     <ion-icon slot="start" name="logo-google"></ion-icon>
 

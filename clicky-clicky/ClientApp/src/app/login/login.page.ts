@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { AccountService } from "../services/account.service";
 import { Subscription } from "rxjs";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-login",
