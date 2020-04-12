@@ -1,7 +1,6 @@
-import { User } from "./user";
-
-export interface Clicky {
-  headline: string;
-  image: string;
-  user: User;
+export interface Survey {
+  id: string;
+  imageUrl: string;
+  question: string;
+  creatorName: string;
 }
