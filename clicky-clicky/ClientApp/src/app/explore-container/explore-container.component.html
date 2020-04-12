@@ -2,15 +2,12 @@
   <ion-card-header>
     <ion-card-title
       ><ion-item>
-        <ion-avatar slot="start">
-          <img [src]="clicky.user.avatar" />
-        </ion-avatar>
-        {{ clicky.headline }}
+        {{ clicky.question }}
       </ion-item></ion-card-title
     >
   </ion-card-header>
 
   <ion-card-content>
-    <ion-img [src]="clicky.image"></ion-img>
+    <ion-img [src]="clicky.imageUrl"></ion-img>
   </ion-card-content>
 </ion-card>
