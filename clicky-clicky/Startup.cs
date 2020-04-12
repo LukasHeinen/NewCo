@@ -48,7 +48,7 @@ namespace clicky_clicky
             .AddGoogle(options =>
             {
                 options.ClientId = "181801142749-eur7nnjh3kj3a4ut9p0ts2oro5gf867g.apps.googleusercontent.com";
-                options.ClientSecret = "azWmt3NyzOYyy1E65YZ9_y4-";
+                options.ClientSecret = "CLIENT_SECRET";
             });
             //.AddOpenIdConnect("Google", o =>
             //{
