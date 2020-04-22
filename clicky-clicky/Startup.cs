@@ -10,6 +10,9 @@ using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System.IdentityModel.Tokens.Jwt;
+using System.Reflection;
+using System.IO;
+using System;
 
 namespace clicky_clicky
 {
@@ -34,8 +37,7 @@ namespace clicky_clicky
 
             services.AddDbContext<IdentityDbContext>(options =>
                         options.UseInMemoryDatabase(databaseName: "Accounts"));
-            //options.UseSqlite("Data Source=users.sqlite",
-            //sqliteOptions => sqliteOptions.MigrationsAssembly("GoogleSpaWeb")));
+                        //options.UseSqlite("Data Source=users.sqlite",
 
             services.AddIdentity<IdentityUser, IdentityRole>()
                     .AddEntityFrameworkStores<IdentityDbContext>()
@@ -50,20 +52,14 @@ namespace clicky_clicky
                 options.ClientId = Configuration["Authentication:Google:ClientId"];
                 options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
             });
-            //.AddOpenIdConnect("Google", o =>
-            //{
-            //    o.ClientId = "181801142749-eur7nnjh3kj3a4ut9p0ts2oro5gf867g.apps.googleusercontent.com";
-            //    o.ClientSecret = "azWmt3NyzOYyy1E65YZ9_y4-";
-            //    o.Authority = "https://accounts.google.com";
-            //    o.ResponseType = OpenIdConnectResponseType.Code;
-            //    o.CallbackPath = "/signin-google"; // Or register the default "/sigin-oidc"
-            //    o.Scope.Add("email");
-            //});
-            //JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
+                // Set the comments path for the Swagger JSON and UI.
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
         }
 
