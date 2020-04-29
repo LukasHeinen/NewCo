@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using clicky_clicky.Surveys.Application.ViewModels;
 using clicky_clicky.Surveys.Application.RequestModels;
 using Microsoft.AspNetCore.Http;
+using clicky_clicky.Surveys.Models;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace clicky_clicky.Surveys.Application
 {
@@ -12,6 +15,12 @@ namespace clicky_clicky.Surveys.Application
     [Route("[controller]")]
     public class SurveysController : ControllerBase
     {
+        private readonly ISurveyService _service;
+
+        public SurveysController(ISurveyService service)
+        {
+            _service = service;
+        }
         [HttpGet]
         public IEnumerable<SurveyView> GetMySurveys()
         {
@@ -28,17 +37,28 @@ namespace clicky_clicky.Surveys.Application
         /// Creates a new survey with a image upload.
         /// </summary>
         /// <remarks>
-        /// Additional description
+        /// This endpoint will use the Authenticated Users Id as CreatorId.
         /// </remarks>
-        /// <param name="survey"></param>
-        /// <returns>A newly created TodoItem</returns>
-        /// <response code="201">Returns the newly created item</response>
-        /// <response code="400">If the item is null</response>            ]
-        //[ProducesResponseType(StatusCodes.Status201Created)]
-        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        /// <param name="surveyRequest"></param>
+        /// <returns>A view on the created survey</returns>
+        /// <response code="201">Returns the view on the created survey</response>
+        /// <response code="400">If required properties are not supplied</response>            ]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost]
-        public void CreateSurvey([FromBody] SurveyRequest survey)
+        [Authorize]
+        public SurveyView CreateSurvey([FromBody] SurveyRequest surveyRequest)
         {
+            var userId = GetUserId();
+            
+            var survey = new Survey(userId)
+            {
+                Question = surveyRequest.Question,
+                ShowResolution = surveyRequest.ShowResolutionAfterTip
+            };
+            _service.CreateSurvey(survey);
+            
+            //Todo: store image (surveyRequest.Image) --> use survey.Id
             throw new NotImplementedException();
         }
 
@@ -46,6 +66,12 @@ namespace clicky_clicky.Surveys.Application
         public void PostTip(Guid id, [FromBody] TipRequest tip)
         {
             throw new NotImplementedException();
+        }
+
+        private string GetUserId ()
+        {
+            var claimsPrincial = (ClaimsPrincipal)User;
+            return claimsPrincial.FindFirst(ClaimTypes.NameIdentifier).Value;
         }
 
     }
