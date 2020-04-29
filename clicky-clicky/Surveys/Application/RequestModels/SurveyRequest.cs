@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
+using System.Drawing;
 
 namespace clicky_clicky.Surveys.Application.RequestModels
 {
@@ -10,5 +11,10 @@ namespace clicky_clicky.Surveys.Application.RequestModels
 
         [Required]
         public IFormFile Image { get; set; }
+
+        [Required]
+        public bool ShowResolutionAfterTip { get; set; }
+        
+        //public Point Solution { get; set; }
     }
 }

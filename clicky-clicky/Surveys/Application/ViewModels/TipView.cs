@@ -1,4 +1,4 @@
-﻿using clicky_clicky.Surveys.Models;
+﻿using System.Drawing;
 
 namespace clicky_clicky.Surveys.Application.ViewModels
 {
