@@ -13,6 +13,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Reflection;
 using System.IO;
 using System;
+using clicky_clicky.Utils.AzureTableStorage;
+using clicky_clicky.Surveys.Models;
+using clicky_clicky.Surveys;
 
 namespace clicky_clicky
 {
@@ -28,6 +31,16 @@ namespace clicky_clicky
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IAzureTableStorage<Survey>>(factory =>
+            {
+                return new AzureTableStorage<Survey>(
+                    new AzureTableSettings(
+                        storageAccount: Configuration["Storage:StorageAccount"],
+                        storageKey: Configuration["Storage:StorageKey"],
+                        tableName: Configuration["Storage:TableName"]));
+            });
+            services.AddScoped<ISurveyService, SurveyService>();
+
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
