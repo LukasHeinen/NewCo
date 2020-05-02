@@ -50,7 +50,7 @@ namespace clicky_clicky
 
             services.AddDbContext<IdentityDbContext>(options =>
                         options.UseInMemoryDatabase(databaseName: "Accounts"));
-                        //options.UseSqlite("Data Source=users.sqlite",
+            //options.UseSqlite("Data Source=users.sqlite",
 
             services.AddIdentity<IdentityUser, IdentityRole>()
                     .AddEntityFrameworkStores<IdentityDbContext>()
@@ -100,7 +100,7 @@ namespace clicky_clicky
             app.UseRouting();
 
             app.UseAuthentication();
-            
+
             app.UseAuthorization();
 
             app.UseHttpsRedirection();
@@ -126,8 +126,8 @@ namespace clicky_clicky
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseAngularCliServer(npmScript: "start");
-                    //spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+                    //spa.UseAngularCliServer(npmScript: "start");
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                 }
             });
         }

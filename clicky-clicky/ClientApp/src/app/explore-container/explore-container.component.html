@@ -1,13 +1,13 @@
-<ion-card *ngFor="let clicky of clickys">
+<ion-card *ngFor="let survey of surveys">
   <ion-card-header>
     <ion-card-title
       ><ion-item>
-        {{ clicky.question }}
+        {{ survey.question }}
       </ion-item></ion-card-title
     >
   </ion-card-header>
 
   <ion-card-content>
-    <ion-img [src]="clicky.imageUrl"></ion-img>
+    <ion-img [src]="survey.imageUrl"></ion-img>
   </ion-card-content>
 </ion-card>
