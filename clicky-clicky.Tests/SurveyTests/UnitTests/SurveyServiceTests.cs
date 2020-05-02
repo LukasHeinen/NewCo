@@ -10,7 +10,7 @@ using clicky_clicky.Utils.AzureTableStorage;
 namespace clicky_clicky.Tests.SurveyTests.UnitTests
 {
     [TestFixture]
-    public class SurveyServiceTests3
+    public class SurveyServiceTests
     {
         private SurveyService _surveyService;
 
@@ -19,6 +19,5 @@ namespace clicky_clicky.Tests.SurveyTests.UnitTests
         {
             _surveyService = new SurveyService(Mock.Of<IAzureTableStorage<Survey>>());
         }
-
     }
 }
