@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using clicky_clicky.Surveys.Application.ViewModels;
 using clicky_clicky.Surveys.Application.RequestModels;
 using Microsoft.AspNetCore.Http;
-using clicky_clicky.Surveys.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using clicky_clicky.Surveys.Application.Mappings;
+using clicky_clicky.Surveys.Domain;
 
 namespace clicky_clicky.Surveys.Application
 {
@@ -49,30 +50,26 @@ namespace clicky_clicky.Surveys.Application
         [Authorize]
         public SurveyView CreateSurvey([FromBody] SurveyRequest surveyRequest)
         {
+            var survey = surveyRequest.ToEntity();
             var userId = GetUserId();
-            
-            var survey = new Survey(userId)
-            {
-                Question = surveyRequest.Question,
-                ShowResolution = surveyRequest.ShowResolutionAfterTip
-            };
+            survey.CreatorId = userId;
             _service.CreateSurvey(survey);
-            
+
             //Todo: store image (surveyRequest.Image) --> use survey.Id
             throw new NotImplementedException();
         }
 
+        [Authorize]
         [HttpPost("{id}/tips")]
         public void PostTip(Guid id, [FromBody] TipRequest tip)
         {
             throw new NotImplementedException();
         }
 
-        private string GetUserId ()
+        private string GetUserId()
         {
             var claimsPrincial = (ClaimsPrincipal)User;
             return claimsPrincial.FindFirst(ClaimTypes.NameIdentifier).Value;
         }
-
     }
 }

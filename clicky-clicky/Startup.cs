@@ -2,20 +2,17 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
-using System.IdentityModel.Tokens.Jwt;
 using System.Reflection;
 using System.IO;
 using System;
 using clicky_clicky.Utils.AzureTableStorage;
-using clicky_clicky.Surveys.Models;
-using clicky_clicky.Surveys;
+using clicky_clicky.Surveys.Domain.Models;
+using clicky_clicky.Surveys.Domain;
 
 namespace clicky_clicky
 {

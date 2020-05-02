@@ -14,7 +14,5 @@ namespace clicky_clicky.Surveys.Application.RequestModels
 
         [Required]
         public bool ShowResolutionAfterTip { get; set; }
-        
-        //public Point Solution { get; set; }
     }
 }

@@ -1,8 +1,9 @@
 using System.Threading.Tasks;
-using clicky_clicky.Surveys.Models;
+using clicky_clicky.Surveys.Domain.Models;
 using clicky_clicky.Utils.AzureTableStorage;
+using Microsoft.AspNetCore.Http;
 
-namespace clicky_clicky.Surveys
+namespace clicky_clicky.Surveys.Domain
 {
     public class SurveyService : ISurveyService
     {
@@ -13,8 +14,15 @@ namespace clicky_clicky.Surveys
             this.repository = repository;
         }
 
+
         public Task CreateSurvey(Survey survey)
         {
+            if (!survey.IsValid()) {
+                
+            }
+            //save Table
+            //save Image
+
             throw new System.NotImplementedException();
         }
     }
