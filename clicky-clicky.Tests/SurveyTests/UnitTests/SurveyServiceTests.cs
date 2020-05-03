@@ -19,5 +19,15 @@ namespace clicky_clicky.Tests.SurveyTests.UnitTests
         {
             _surveyService = new SurveyService(Mock.Of<IAzureTableStorage<Survey>>());
         }
+
+        [Test]
+        public void CreateSurvey_InvalidSurvey_ArgumentException()
+        {
+            var invalidSurvey = new Survey();
+            Assert.Throws<ArgumentException>(() => _surveyService.CreateSurvey(invalidSurvey));
+        }
+        
+
+
     }
 }

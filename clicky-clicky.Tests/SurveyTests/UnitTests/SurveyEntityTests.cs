@@ -47,7 +47,7 @@ namespace clicky_clicky.Tests.SurveyTests.UnitTests
         [TestCase("  What is where?")]
         [TestCase("What is where?   ")]
         [TestCase("   What is where?   ")]
-        public void Qustion_LeadingOrTrailingWhitespaces_Trimmed(string question)
+        public void Question_LeadingOrTrailingWhitespaces_Trimmed(string question)
         {
             var survey = new Survey()
             {

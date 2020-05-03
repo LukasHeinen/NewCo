@@ -10,13 +10,6 @@ namespace clicky_clicky.Surveys.Domain.Models
         private string _question;
         public Survey() {}
 
-        public Survey(string creatorId, string question)
-        {
-            PartitionKey = "Surveys";
-            CreatorId = creatorId;
-            Question = question;
-        }
-
         public string Id
         {
             get { return RowKey; }
@@ -27,10 +20,6 @@ namespace clicky_clicky.Surveys.Domain.Models
         public string Question { get {return _question;} set { _question = value?.Trim(' '); }}
 
         public bool ShowSolution { get; set; } = false;
-
-        public void CleanUp() {
-
-        }
 
         public bool IsValid()
         {

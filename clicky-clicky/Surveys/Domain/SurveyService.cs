@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using clicky_clicky.Surveys.Domain.Models;
 using clicky_clicky.Utils.AzureTableStorage;
@@ -15,12 +16,12 @@ namespace clicky_clicky.Surveys.Domain
         }
 
 
-        public Task CreateSurvey(Survey survey)
+        public async Task CreateSurvey(Survey survey)
         {
-            if (!survey.IsValid()) {
-                
-            }
-            //save Table
+            if (!survey.IsValid()) throw new ArgumentException();
+            
+            //await repository.Insert(survey);
+            
             //save Image
 
             throw new System.NotImplementedException();
