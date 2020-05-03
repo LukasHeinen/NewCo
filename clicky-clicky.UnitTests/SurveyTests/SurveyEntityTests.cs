@@ -1,7 +1,7 @@
 using clicky_clicky.Surveys.Domain.Models;
 using NUnit.Framework;
 
-namespace clicky_clicky.Tests.SurveyTests.UnitTests
+namespace clicky_clicky.UnitTests.SurveyTests
 {
     [TestFixture]
     public class SurveyEntityTests

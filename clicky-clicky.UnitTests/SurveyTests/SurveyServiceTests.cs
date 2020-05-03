@@ -7,7 +7,7 @@ using NUnit.Framework;
 using Moq;
 using clicky_clicky.Utils.AzureTableStorage;
 
-namespace clicky_clicky.Tests.SurveyTests.UnitTests
+namespace clicky_clicky.UnitTests.SurveyTests
 {
     [TestFixture]
     public class SurveyServiceTests
@@ -24,10 +24,7 @@ namespace clicky_clicky.Tests.SurveyTests.UnitTests
         public void CreateSurvey_InvalidSurvey_ArgumentException()
         {
             var invalidSurvey = new Survey();
-            Assert.Throws<ArgumentException>(() => _surveyService.CreateSurvey(invalidSurvey));
+            Assert.ThrowsAsync<ArgumentException>(async () => await _surveyService.CreateSurvey(invalidSurvey));
         }
-        
-
-
     }
 }
