@@ -25,7 +25,7 @@ namespace clicky_clicky.Surveys.Application
         [HttpGet]
         public IEnumerable<SurveyView> GetMySurveys()
         {
-            throw new NotImplementedException();
+            return new List<SurveyView>();
         }
 
         [HttpGet("{id}")]
