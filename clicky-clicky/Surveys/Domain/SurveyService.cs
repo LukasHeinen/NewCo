@@ -16,9 +16,12 @@ namespace clicky_clicky.Surveys.Domain
         }
 
 
-        public async Task CreateSurvey(Survey survey)
+        public async Task CreateSurvey(Survey survey, IFormFile image)
         {
             if (!survey.IsValid()) throw new ArgumentException();
+
+            //using var stream = new FileStream(filename, FileMode.Create);
+            //await surveyRequest.File.CopyToAsync(stream);
             
             //await repository.Insert(survey);
             

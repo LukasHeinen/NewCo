@@ -8,11 +8,12 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using clicky_clicky.Surveys.Application.Mappings;
 using clicky_clicky.Surveys.Domain;
+using System.IO;
 
 namespace clicky_clicky.Surveys.Application
 {
     [Produces("application/json")]
-    [ApiController]
+    //[ApiController]
     [Route("[controller]")]
     public class SurveysController : ControllerBase
     {
@@ -47,13 +48,14 @@ namespace clicky_clicky.Surveys.Application
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost]
-        [Authorize]
-        public SurveyView CreateSurvey([FromBody] SurveyRequest surveyRequest)
+        //[Authorize]
+        public SurveyView CreateSurvey([FromForm] SurveyRequest surveyRequest)
         {
+            throw new NotImplementedException();
             var survey = surveyRequest.ToEntity();
             var userId = GetUserId();
             survey.CreatorId = userId;
-            _service.CreateSurvey(survey);
+            _service.CreateSurvey(survey, surveyRequest.Image);
 
             //Todo: store image (surveyRequest.Image) --> use survey.Id
             throw new NotImplementedException();
