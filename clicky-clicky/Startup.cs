@@ -47,7 +47,7 @@ namespace clicky_clicky
 
             services.AddDbContext<IdentityDbContext>(options =>
                         options.UseInMemoryDatabase(databaseName: "Accounts"));
-            //options.UseSqlite("Data Source=users.sqlite",
+                        //options.UseSqlite("Data Source=users.sqlite",
 
             services.AddIdentity<IdentityUser, IdentityRole>()
                     .AddEntityFrameworkStores<IdentityDbContext>()
@@ -61,6 +61,11 @@ namespace clicky_clicky
             {
                 options.ClientId = Configuration["Authentication:Google:ClientId"];
                 options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+            })
+            .AddMicrosoftAccount(options =>
+            {
+                options.ClientId = Configuration["Authentication:Microsoft:ClientId"];
+                options.ClientSecret = Configuration["Authentication:Microsoft:ClientSecret"];
             });
 
             services.AddSwaggerGen(c =>

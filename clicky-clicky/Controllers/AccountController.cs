@@ -34,6 +34,13 @@ namespace clicky_clicky.Controllers
             return Challenge(authenticationProperties, "Google");
         }
 
+        [HttpGet("SignInWithMicrosoft")]
+        public IActionResult SignInWithMicrosoft()
+        {
+            var authenticationProperties = _signInManager.ConfigureExternalAuthenticationProperties("Microsoft", Url.Action(nameof(HandleExternalLogin)));
+            return Challenge(authenticationProperties, "Microsoft");
+        }
+
         [HttpGet("HandleExternalLogin")]
         public async Task<IActionResult> HandleExternalLogin()
         {
