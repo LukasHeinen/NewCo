@@ -30,7 +30,7 @@ namespace clicky_clicky.Surveys.Application
         }
 
         [HttpGet("{id}")]
-        public SurveyView GetSurvey(Guid id)
+        public SurveyView GetSurvey(string id)
         {
             throw new NotImplementedException();
         }
