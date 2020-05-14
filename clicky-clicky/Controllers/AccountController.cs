@@ -23,6 +23,7 @@ namespace clicky_clicky.Controllers
         [HttpGet("Login")]
         public IActionResult Login() 
         {
+            //redirect to login page?
             var authenticationProperties = _signInManager.ConfigureExternalAuthenticationProperties("Google", Url.Action(nameof(HandleExternalLogin)));
             return Challenge(authenticationProperties, "Google");
         }
